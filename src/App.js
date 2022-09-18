@@ -3,6 +3,8 @@ import { SignUp, LoginPage } from "./auth";
 import { UserLanding, AdminLanding, ResponsiveAppBar } from "./layout";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
+import { FormSuccess } from "./forms";
+import { EditUser, Users } from "./admin";
 
 function App() {
   const [currentToken, setCurrentToken] = useState(
@@ -23,9 +25,17 @@ function App() {
     console.log(decoded);
     var userRoutes =
       decoded.role.toString() === "admin" ? (
-        <Route path="/" element={<AdminLanding />} />
+        <>
+          <Route path="/" element={<AdminLanding />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/editRole/:email" element={<EditUser />} />
+        </>
       ) : (
-        <Route path="/" element={<UserLanding />} />
+        <>
+          {" "}
+          <Route path="/" element={<UserLanding />} />
+          <Route path="/success" element={<FormSuccess />} />
+        </>
       );
   }
   var publicRoutes = (

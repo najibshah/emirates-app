@@ -60,7 +60,10 @@ export default function AccountDropdownButton(props) {
         }}
       >
         {decoded && decoded.role === "admin" ? (
-          <MenuItem onClick={() => history("/")}>Admin</MenuItem>
+          <MenuItem onClick={() => history("/users")}>Users</MenuItem>
+        ) : null}
+        {decoded && decoded.role === "admin" ? (
+          <MenuItem onClick={() => history("/")}>Forms</MenuItem>
         ) : null}
         <MenuItem
           onClick={() => {
